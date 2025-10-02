@@ -1,6 +1,0 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd apps/miniapp && pnpm run build",
-  "installCommand": "pnpm install --frozen-lockfile",
-  "outputDirectory": "apps/miniapp/.next"
-}
