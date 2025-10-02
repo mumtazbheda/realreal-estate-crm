@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { z } from 'zod'
-import { validateTelegramAuth } from '@realreal/core'
-import { signJWT } from '@realreal/core'
-import { createSupabaseServerClient } from '@realreal/core'
+import { validateTelegramAuth } from '@/lib/core/auth/telegram'
+import { signJWT } from '@/lib/core/auth/jwt'
+import { createSupabaseServerClient } from '@/lib/core/db/supabase'
 
 const AuthRequestSchema = z.object({
   initData: z.string(),
