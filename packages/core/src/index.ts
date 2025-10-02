@@ -1,4 +1,6 @@
 export * from './clients/supabase'
 export * from './clients/mailwizz'
 export * from './clients/aichats'
+export * from './auth/telegram'
+export * from './auth/jwt'
 export * from './types'
