@@ -1,19 +1,6 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "cd apps/miniapp && pnpm run build",
-  "devCommand": "cd apps/miniapp && pnpm run dev",
-  "installCommand": "pnpm install",
-  "framework": null,
-  "outputDirectory": "apps/miniapp/.next",
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/apps/api/:path*"
-    }
-  ],
-  "crons": [
-    {
-      "path": "/api/health",
-      "schedule": "0 0 * * 0"
-    }
-  ]
+  "installCommand": "pnpm install --frozen-lockfile",
+  "outputDirectory": "apps/miniapp/.next"
 }
