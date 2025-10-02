@@ -71,7 +71,7 @@ export default function Login() {
         )}
 
         <div className="text-sm text-gray-500">
-          <p>Bot: @zyoracrm_bot</p>
+          <p>Bot: @zyora_realestate_bot</p>
         </div>
       </div>
     </div>
