@@ -1,21 +1,19 @@
 {
-  "version": 2,
-  "builds": [
+  "buildCommand": "cd apps/miniapp && pnpm run build",
+  "devCommand": "cd apps/miniapp && pnpm run dev",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "outputDirectory": "apps/miniapp/.next",
+  "rewrites": [
     {
-      "src": "apps/miniapp/package.json",
-      "use": "@vercel/next"
+      "source": "/api/:path*",
+      "destination": "/apps/api/:path*"
     }
   ],
-  "routes": [
+  "crons": [
     {
-      "src": "/api/(.*)",
-      "dest": "/apps/api/$1"
+      "path": "/api/health",
+      "schedule": "0 0 * * 0"
     }
-  ],
-  "functions": {
-    "apps/api/**/*.ts": {
-      "runtime": "nodejs20.x"
-    }
-  },
-  "crons": []
+  ]
 }

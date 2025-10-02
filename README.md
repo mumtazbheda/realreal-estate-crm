@@ -39,14 +39,14 @@ Multi-tenant Real Estate CRM built as a Telegram Mini App with Next.js, Supabase
 
 1. **Clone and install**:
    ```bash
-   git clone <repo>
+   git clone https://github.com/mumtazbheda/realreal-estate-crm.git
    cd realreal-estate-crm
-   npm install
+   pnpm install
    ```
 
 2. **Environment variables**:
    ```bash
-   cp .env.example .env.local
+   cp .env.example apps/miniapp/.env.local
    # Fill in your Supabase, Telegram, and integration credentials
    ```
 
@@ -58,15 +58,38 @@ Multi-tenant Real Estate CRM built as a Telegram Mini App with Next.js, Supabase
 
 4. **Start dev server**:
    ```bash
-   npm run dev
+   pnpm dev
+   # Or run individual apps:
+   pnpm -r --parallel dev
    ```
+
+5. **Test the setup**:
+   - Open http://localhost:3000 for the Mini App
+   - Visit http://localhost:3000/ping to test the API health endpoint
 
 ## Development
 
-- `npm run dev` - Start all dev servers
-- `npm run build` - Build all apps
-- `npm run lint` - Lint all packages
-- `npm run test` - Run tests
+- `pnpm install` - Install all dependencies
+- `pnpm dev` - Start all dev servers in parallel
+- `pnpm build` - Build all apps
+- `pnpm lint` - Lint all packages
+- `pnpm test` - Run tests
+- `pnpm format` - Format code with Prettier
+
+## Environment Variables
+
+All secrets are read from `process.env` at runtime. For local development, create `apps/miniapp/.env.local`:
+
+- `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase anonymous key
+- `SUPABASE_SERVICE_ROLE_KEY` - Supabase service role key (server-side only)
+- `TELEGRAM_BOT_TOKEN` - Telegram bot token
+- `MAILWIZZ_API_URL` - MailWizz API endpoint
+- `MAILWIZZ_API_KEY` - MailWizz API key
+- `AICHATS_API_URL` - AI Chats API endpoint
+- `AICHATS_API_KEY` - AI Chats API key
+
+**For production**: Set these in Vercel's environment variables dashboard. Never commit secrets to git.
 
 ## Hard Rules
 
