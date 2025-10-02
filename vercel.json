@@ -1,6 +1,12 @@
 {
-  "buildCommand": "pnpm install && cd apps/miniapp && pnpm run build",
-  "devCommand": "cd apps/miniapp && pnpm run dev",
-  "installCommand": "npm install -g pnpm",
-  "outputDirectory": "apps/miniapp/.next"
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/miniapp/package.json",
+      "use": "@vercel/next",
+      "config": {
+        "zeroConfig": true
+      }
+    }
+  ]
 }
