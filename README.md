@@ -54,8 +54,13 @@ Multi-tenant Real Estate CRM built as a Telegram Mini App with Next.js, Supabase
 
 3. **Run migrations**:
    ```bash
-   # Set up Supabase CLI and run migrations
+   # Option 1: Using Supabase CLI (recommended)
+   npx supabase link --project-ref your-project-ref
    npx supabase db push
+
+   # Option 2: Manual via Supabase Dashboard
+   # Copy contents of supabase/migrations/0001_schema.sql
+   # Paste into SQL Editor in Supabase Dashboard and run
    ```
 
 4. **Start dev server**:
@@ -132,6 +137,36 @@ All secrets are read from `process.env` at runtime. For local development, creat
 - `AICHATS_API_KEY` - AI Chats API key
 
 **For production**: Set these in Vercel's environment variables dashboard. Never commit secrets to git.
+
+## Database Schema
+
+### Core Tables
+
+- **tenants** - Multi-tenant organizations
+- **users** - Global user accounts (Telegram ID + email)
+- **tenant_users** - User-tenant memberships with roles (owner, manager, agent, viewer, super_admin)
+- **contacts** - Contact information with tenant isolation
+- **leads** - Lead tracking with status, source, assignee
+- **activity_log** - Audit trail for all entity changes
+- **webhook_events** - Incoming webhook events from integrations
+- **whatsapp_events** - WhatsApp message log
+- **email_events** - Email campaign events
+
+### RLS (Row Level Security)
+
+All tables have RLS enabled with **deny-by-default** policies:
+- JWT claims expected: `uid` (user ID) and `tenants` (array of tenant IDs)
+- Helper functions: `current_user_id()`, `current_tenants()`
+- Users can only access data from tenants they belong to
+- Policies use `?|` operator to check tenant membership
+
+### Migrations
+
+Run migrations in order:
+```bash
+# 0001_schema.sql - Core multi-tenant schema with RLS
+npx supabase db push
+```
 
 ## Hard Rules
 
