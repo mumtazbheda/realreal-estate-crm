@@ -1,6 +1,15 @@
 {
-  "buildCommand": "./build.sh",
-  "installCommand": "pnpm install",
-  "framework": "nextjs",
-  "outputDirectory": "apps/miniapp/.next"
+  "version": 2,
+  "builds": [
+    {
+      "src": "apps/miniapp/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "apps/miniapp/$1"
+    }
+  ]
 }
