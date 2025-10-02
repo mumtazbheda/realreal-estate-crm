@@ -8,5 +8,11 @@
         "zeroConfig": true
       }
     }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/apps/miniapp/$1"
+    }
   ]
 }
