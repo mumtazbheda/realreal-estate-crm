@@ -1,5 +1,7 @@
 # Real Estate CRM - Telegram Mini App
 
+[![CI](https://github.com/mumtazbheda/realreal-estate-crm/actions/workflows/ci.yml/badge.svg)](https://github.com/mumtazbheda/realreal-estate-crm/actions/workflows/ci.yml)
+
 Multi-tenant Real Estate CRM built as a Telegram Mini App with Next.js, Supabase, and Vercel.
 
 ## Stack
@@ -69,12 +71,52 @@ Multi-tenant Real Estate CRM built as a Telegram Mini App with Next.js, Supabase
 
 ## Development
 
+### Commands
+
 - `pnpm install` - Install all dependencies
 - `pnpm dev` - Start all dev servers in parallel
 - `pnpm build` - Build all apps
 - `pnpm lint` - Lint all packages
+- `pnpm typecheck` - Type check all packages
 - `pnpm test` - Run tests
 - `pnpm format` - Format code with Prettier
+
+### PR Workflow
+
+1. **Create feature branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+2. **Make changes and commit**:
+   ```bash
+   git add .
+   git commit -m "feat: your feature description"
+   ```
+
+3. **Push and create PR**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+   - Create PR on GitHub targeting `main` branch
+   - CI will automatically run: lint, typecheck, and tests
+   - Vercel will create a preview deployment
+
+4. **Review & Merge**:
+   - Wait for CI checks to pass ✅
+   - Request review from team
+   - Merge to `main` after approval
+   - Production deploy happens automatically via Vercel
+
+### CI/CD
+
+- **CI**: GitHub Actions runs on every PR to `main`
+  - Linting with ESLint
+  - Type checking with TypeScript
+  - Unit tests with Vitest
+- **CD**: Vercel handles deployments
+  - Preview: Every PR gets a preview URL
+  - Production: Merges to `main` auto-deploy
 
 ## Environment Variables
 
